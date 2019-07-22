@@ -19,6 +19,6 @@ export function* addUserSaga(action) {
 
     yield put(addUserActions.addAvatarToMapSuccess(userData));
   } catch (err) {
-    console.log(err);
+    yield put(addUserActions.addAvatarFailure(true));
   }
 }

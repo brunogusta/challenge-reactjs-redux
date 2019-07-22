@@ -63,10 +63,14 @@ class Modal extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  users: state.userMarker
+});
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(addUserActions, dispatch);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Modal);
