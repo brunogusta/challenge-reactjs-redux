@@ -9,17 +9,28 @@ import { bindActionCreators } from 'redux';
 
 class Modal extends Component {
   state = {
-    inputValue: ''
+    inputValue: '',
+    longitude: null,
+    latitude: null
   };
 
   setInputValue = value => {
     this.setState({ ...this.state, inputValue: value });
   };
 
-  addUser = e => {
+  addUser = async e => {
     e.preventDefault();
 
-    this.props.addInputRequest(this.state.inputValue);
+    const longitude = this.props.coordenates.longitude;
+    const latitude = this.props.coordenates.latitude;
+
+    await this.setState({
+      ...this.state,
+      longitude,
+      latitude
+    });
+
+    this.props.addInputRequest(this.state);
 
     this.setState({ inputValue: '' });
     this.props.closeModal();
@@ -42,8 +53,8 @@ class Modal extends Component {
               value={this.state.inputValue}
             />
             <Footer>
-              <button onClick={this.props.closeModal}>Cancelar</button>
               <button type="submit">Salvar</button>
+              <button onClick={this.props.closeModal}>Cancelar</button>
             </Footer>
           </Content>
         </Container>

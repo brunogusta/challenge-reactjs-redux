@@ -22,7 +22,8 @@ class Main extends Component {
     },
     input: {
       value: ''
-    }
+    },
+    coordenates: null
   };
 
   componentDidMount() {
@@ -46,7 +47,18 @@ class Main extends Component {
 
   handleMapClick = e => {
     e.preventDefault();
-    //const [longitude, latitude] = e.lngLat;
+
+    const [longitude, latitude] = e.lngLat;
+
+    const coordenates = {
+      longitude,
+      latitude
+    };
+
+    this.setState({
+      ...this.state,
+      coordenates
+    });
 
     this.openModalHandler();
   };
@@ -78,33 +90,39 @@ class Main extends Component {
           }
           onViewportChange={viewport => this.setState({ viewport })}
         >
-          <Marker
-            latitude={-19.5439948}
-            longitude={-46.6065452}
-            onClick={this.handleMapClick}
-            captureClick={true}
-          >
-            <img
-              style={{
-                borderRadius: 100,
-                width: 48,
-                height: 48
-              }}
-              src="https://avatars2.githubusercontent.com/u/2254731?v=4"
-              alt="avatar"
-            />
-          </Marker>
+          {this.props.users.data.map(user => (
+            <Marker
+              key={user.id}
+              latitude={user.latitude}
+              longitude={user.longitude}
+              onClick={this.handleMapClick}
+              captureClick={true}
+            >
+              <img
+                style={{
+                  borderRadius: 100,
+                  width: 48,
+                  height: 48
+                }}
+                src={user.avatarURL}
+                alt="avatar"
+              />
+            </Marker>
+          ))}
         </MapGL>
         <Modal
           isShowing={this.state.modal.isShowing}
           closeModal={this.closeModalHandler}
+          coordenates={this.state.coordenates}
         />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  users: state.userMarker
+});
 
 // const mapDispatchToProps = dispatch =>
 //   bindActionCreators(Actions, dispatch);

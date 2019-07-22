@@ -28,9 +28,9 @@ export default function userMarker(state = INITIAL_STATE, action) {
  */
 
 export const Creators = {
-  addInputRequest: user => ({
+  addInputRequest: userData => ({
     type: Types.ADD_REQUEST,
-    payload: { user }
+    payload: userData
   }),
 
   addAvatarToMapSuccess: data => ({
