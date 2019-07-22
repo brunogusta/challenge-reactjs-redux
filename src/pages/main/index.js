@@ -23,7 +23,7 @@ class Main extends Component {
     input: {
       value: ''
     },
-    coordenates: null
+    coordinates: null
   };
 
   componentDidMount() {
@@ -50,14 +50,14 @@ class Main extends Component {
 
     const [longitude, latitude] = e.lngLat;
 
-    const coordenates = {
+    const coordinates = {
       longitude,
       latitude
     };
 
     this.setState({
       ...this.state,
-      coordenates
+      coordinates
     });
 
     this.openModalHandler();
@@ -113,7 +113,7 @@ class Main extends Component {
         <Modal
           isShowing={this.state.modal.isShowing}
           closeModal={this.closeModalHandler}
-          coordenates={this.state.coordenates}
+          coordinates={this.state.coordinates}
         />
       </Fragment>
     );

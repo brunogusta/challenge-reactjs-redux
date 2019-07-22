@@ -21,8 +21,8 @@ class Modal extends Component {
   addUser = async e => {
     e.preventDefault();
 
-    const longitude = this.props.coordenates.longitude;
-    const latitude = this.props.coordenates.latitude;
+    const longitude = this.props.coordinates.longitude;
+    const latitude = this.props.coordinates.latitude;
 
     await this.setState({
       ...this.state,
