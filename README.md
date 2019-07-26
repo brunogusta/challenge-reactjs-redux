@@ -1,4 +1,4 @@
-# goMap
+## goMap
 
 Challenge of Rocketseat bootcamp with GitHub API completed using Reactjs, Redux, Redux-Saga and others librarys/frameworks.
 
